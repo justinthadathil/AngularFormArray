@@ -81,7 +81,6 @@ export class MainFormComponent implements OnInit {
 		this.isValidFormSubmitted = true;
     let formValue = this.addMemberItemInputForm.value;
     this.showValue(formValue)
-    console.log(formValue);
 	}
 
   showValue(value: any){
