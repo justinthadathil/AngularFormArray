@@ -14,6 +14,7 @@ This project gives a brief example about how to implement formArray in Angular w
 ## deployment and hosting
 
 deployed on GitHub pages: - `https://justinthadathil.github.io/AngularFormArray/`
+
 Steps to deploy
 1. in the angular.json file change the outputPath to "outputPath": "docs/"
 2. build your code using the command:-> ng build --prod --base-href "https://<your_github_username>.github.io/<your_project_name>/"
