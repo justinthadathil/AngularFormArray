@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-7 colstl">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title cardhead">FormArray in Angular</h5>
+        <div [formGroup]="addMemberItemInputForm" *ngIf="!showFinalFormValue">
+          <div class="row">
+            <div class="col-6">
+              <label class="form-label">Enter Member Name</label>
+              <input type="text" class="form-control" placeholder="Member Name" formControlName="memberName">
+              <label *ngIf="memberName?.invalid && isValidFormSubmitted != null && !isValidFormSubmitted" class="error">
+                Team name is required.
+              </label>
+            </div>
+            <div class="col-6">
+              <label class="form-label">Select a Item Type</label>
+              <ejs-dropdownlist formControlName="itemType" [dataSource]='data' placeholder = 'Type' (change)="changeType($event)"></ejs-dropdownlist>
+              <label *ngIf="itemType?.invalid && isValidFormSubmitted != null && !isValidFormSubmitted" class="error">
+                Type is required
+              </label>
+            </div>
+          </div>
+          <div *ngIf="showTable">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Iteam Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="itemDetails">
+                <tr  *ngFor="let item of itemDetails.controls; let i = index" [formGroupName]="i">
+                  <td>
+                    <input type="text" class="form-control" placeholder="Enter Item Name" formControlName="itemName">
+                    <label *ngIf="itemDetails.controls[i].get('itemName')?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted" class="error">
+                      Employee name required.
+                    </label>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control" placeholder="Enter Quantity" formControlName="quantity">
+                    <label *ngIf="itemDetails.controls[i].get('quantity')?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted" class="error">
+                      Quantity required.
+                    </label>
+                    <label *ngIf="itemDetails.controls[i].get('quantity')?.errors?.['max']" class="error">
+                      Minimum Quantity is 5.
+                    </label>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control" placeholder="Enter price" formControlName="price">
+                    <label *ngIf="itemDetails.controls[i].get('price')?.errors?.['required'] && isValidFormSubmitted != null && !isValidFormSubmitted" class="error">
+                      Price required.
+                    </label>
+                  </td>
+                  <td style="text-align: center;">
+                    <p class="val">{{retureTotal(item) | number : '1.2-2'}}</p>
+                  </td>
+                  <td style="text-align: center;">
+                    <p class="val">
+                      <i class="bi bi-trash3-fill" (click)="deleteEmployee(i)"></i>
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <button type="button" class="btn btn-primary" (click)="addEmployee()">Add More Items</button>
+              <label *ngIf="itemDetails.errors?.['maxlength']" class="error" style="display: block;">
+                Maximum number of Items can only be 5.
+              </label>
+            </div>
+
+            <div class="footer">
+              <button type="button" style="width: 20%;" class="btn btn-primary" (click)="onFormSubmit()">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="showFinalFormValue">
+          <div class="row">
+            <div class="col-6">
+              <label class="form-label">Member Name</label>
+              <label class="form-label" style="font-weight: 600; display: block;">{{getFinalValue?.memberName}}</label>
+            </div>
+            <div class="col-6">
+              <label class="form-label">Item Type</label>
+              <label class="form-label" style="font-weight: 600;display: block;">{{getFinalValue?.itemType}}</label>
+            </div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Iteam Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of getFinalValue?.itemDetails">
+                <td>{{item.itemName}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.quantity * item.price | number : '1.2-2'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

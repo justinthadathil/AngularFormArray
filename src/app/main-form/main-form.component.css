@@ -1,0 +1,29 @@
+.footer{
+  padding: 10px;
+  margin-top: 25px;
+  border-top: 1px solid #ced4d9;
+  text-align: center;
+}
+
+.colstl{
+  margin: auto;
+  margin-top: 50px;
+}
+
+.cardhead{
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+.error{
+  color: #ca4444;
+  font-weight: 600;
+  padding-top: 6px;
+}
+
+.val{
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
