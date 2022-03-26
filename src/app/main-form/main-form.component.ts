@@ -53,8 +53,7 @@ export class MainFormComponent implements OnInit {
 		})
 	}
 
-  changeType(event: any){
-    console.log(event)
+  changeType(){
     this.showTable = true;
   }
 
@@ -89,6 +88,11 @@ export class MainFormComponent implements OnInit {
     this.getFinalValue = value;
     this.showFinalFormValue = true;
     this.resetTeamForm();
+  }
+
+  backToForm(){
+    this.showFinalFormValue = false;
+    this.showTable = false;
   }
 
 	resetTeamForm() {

@@ -8,4 +8,4 @@ Clone the project, Run `npm install` and then Run `ng serve` for a dev server. N
 
 ## About the Project
 
-This project gives a brief example about how to implement formArray with proper validations on change and submit.
+This project gives a brief example about how to implement formArray in Angular with proper validations on change and submit.

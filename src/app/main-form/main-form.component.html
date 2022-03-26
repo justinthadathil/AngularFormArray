@@ -14,7 +14,7 @@
             </div>
             <div class="col-6">
               <label class="form-label">Select a Item Type</label>
-              <ejs-dropdownlist formControlName="itemType" [dataSource]='data' placeholder = 'Type' (change)="changeType($event)"></ejs-dropdownlist>
+              <ejs-dropdownlist formControlName="itemType" [dataSource]='data' placeholder = 'Type' (change)="changeType()"></ejs-dropdownlist>
               <label *ngIf="itemType?.invalid && isValidFormSubmitted != null && !isValidFormSubmitted" class="error">
                 Type is required
               </label>
@@ -79,6 +79,9 @@
         </div>
 
         <div *ngIf="showFinalFormValue">
+          <div class="bacdiv">
+            <button type="button" class="btn btn-success" (click)="backToForm()">Back</button>
+          </div>
           <div class="row">
             <div class="col-6">
               <label class="form-label">Member Name</label>
